@@ -47,7 +47,7 @@ final class HomeViewModel: RxViewModel {
 }
 
 // View controller class
-fianl class HomeViewController: RxViewController<HomeViewModel> {
+final class HomeViewController: RxViewController<HomeViewModel> {
 
 }
 ```
@@ -74,10 +74,10 @@ Used to initialize with storyboard and inject ViewModel. To use this method, ove
 
 ### RxViewModel Init with Storyboard
 Used to initialize to the storyboard.
--`public init(storyboardID: String, identifier: String, bundle: Bundle)`
+- `public init(storyboardID: String, identifier: String, bundle: Bundle)`
 
 Used to initialize with UINib.
--`public init(nibName: String?, bundle: Bundle`
+- `public init(nibName: String?, bundle: Bundle`
 
 When initializing using the storyboard, either of the above methods must be overridden before the `public init(storyboardID: String, identifier: String, bundle: Bundle)` method can be executed.
 
