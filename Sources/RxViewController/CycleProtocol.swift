@@ -43,7 +43,7 @@ public protocol CycleProtocol {
 public extension CycleProtocol {
     static func initWith(viewModel: RxViewModel) -> Self {
         switch viewModel.kind.type {
-        case .controller:
+        case .storyboard:
             let identifier: String = viewModel.kind.identifier ?? .init(describing: self)
             let storyboard = UIStoryboard(name: viewModel.kind.storyboardID, bundle: viewModel.kind.bundle)
 
@@ -56,10 +56,10 @@ public extension CycleProtocol {
             }
 
             return viewController
-        case .view:
+        case .nib:
             let nibName: String = viewModel.kind.identifier ?? .init(describing: self)
             let nib: UINib = .init(nibName: nibName, bundle: viewModel.kind.bundle)
-            
+
             if let view = nib.instantiate(withOwner: nil, options: nil)[0] as? Self {
                 if let viewModel = viewModel as? Self.ViewModel {
                     view.bind(viewModel)

@@ -19,7 +19,7 @@ public protocol ViewBindable {
 
 struct RxViewModelKind {
     enum ViewType {
-        case controller, view
+        case storyboard, nib
     }
 
     let type: ViewType
@@ -33,7 +33,7 @@ open class RxViewModel: NSObject {
     let kind: RxViewModelKind
 
     /**
-     Used to initialize the RxViewController, RxTabBarController.
+     Used to initialize to the storyboard.
 
      - Parameters:
         - storyboardID: The name of the storyboard resource file without the filename extension. This method raises an exception if this parameter is nil.
@@ -43,15 +43,15 @@ open class RxViewModel: NSObject {
     public init(storyboardID: String,
                 identifier: String? = nil,
                 bundle: Bundle = .main) {
-        kind = .init(type: .controller,
-                         storyboardID: storyboardID,
-                         identifier: identifier,
-                         bundle: bundle)
+        kind = .init(type: .storyboard,
+                     storyboardID: storyboardID,
+                     identifier: identifier,
+                     bundle: bundle)
         super.init()
     }
 
     /**
-     Used to initialize the RxView
+     Used to initialize with UINib.
 
      - Parameters:
         - nibName: Returns a UINib object initialized to the nib file in the specified bundle.
@@ -59,10 +59,10 @@ open class RxViewModel: NSObject {
      */
     public init(nibName: String? = nil,
                 bundle: Bundle = .main) {
-        kind = .init(type: .view,
-                         storyboardID: "",
-                         identifier: nibName,
-                         bundle: bundle)
+        kind = .init(type: .nib,
+                     storyboardID: "",
+                     identifier: nibName,
+                     bundle: bundle)
         super.init()
     }
 
