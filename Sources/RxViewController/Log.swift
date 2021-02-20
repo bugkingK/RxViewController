@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Log.swift
 //  
 //
 //  Created by Kimun Kwon on 2021/02/20.
