@@ -8,15 +8,14 @@
 import UIKit
 import RxSwift
 
-open class RxViewController<ViewModel: RxViewModel>: UIViewController {
+open class RxViewController<ViewModel: RxViewModel>: UIViewController, CycleProtocol {
     public var disposeBag: DisposeBag = .init()
     public var viewModel: ViewModel!
 
-    public init(viewModel: ViewModel) {
+    public required init(viewModel: ViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: viewModel.identifier, bundle: viewModel.bundle)
+        super.init(nibName: viewModel.kind.identifier, bundle: viewModel.kind.bundle)
         initialize()
-        bind(viewModel)
     }
 
     public required init?(coder: NSCoder) {
@@ -27,33 +26,16 @@ open class RxViewController<ViewModel: RxViewModel>: UIViewController {
     open override func viewDidLoad() {
         super.viewDidLoad()
         layout()
+        bind(viewModel)
     }
 
     deinit {
         Log.print(d: "DEINIT \(type(of: self))")
     }
 
-    /**
-     Defines the various layout properties of the 'UIViewController'.
-     */
     open func layout() {}
 
-    /**
-     Used when a change to the Cocoa dependency properties that should be injected at 'init()' time is required.
-     ⚠️ Caution: Changing properties other than the init point in time may affect the viewDidLoad point in time
-     */
     open func initialize() {}
 
-    /**
-     Defines the various layout properties of the 'UIViewController'.
-
-     - Binding properties of 'RxViewModel' and each component
-     - In 'bind', it is possible to perform both the definition behavior and the change in location of variable properties.
-
-     *(Define only behavior that changes with any Observable, not directly inputting behavior.)*
-
-     - Parameters:
-     - viewModel: This is 'RxViewModel' that can bind to the view.
-     */
     open func bind(_ viewModel: ViewModel) {}
 }

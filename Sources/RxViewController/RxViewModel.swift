@@ -17,14 +17,23 @@ public protocol ViewBindable {
     func transform() -> Output
 }
 
+struct RxViewModelKind {
+    enum ViewType {
+        case controller, view
+    }
+
+    let type: ViewType
+    let storyboardID: String
+    let identifier: String?
+    let bundle: Bundle
+}
+
 open class RxViewModel: NSObject {
     public var disposeBag: DisposeBag = .init()
-    var storyboardID: String
-    var identifier: String?
-    var bundle: Bundle
+    let kind: RxViewModelKind
 
     /**
-     Used to initialize the RxViewController.
+     Used to initialize the RxViewController, RxTabBarController.
 
      - Parameters:
         - storyboardID: The name of the storyboard resource file without the filename extension. This method raises an exception if this parameter is nil.
@@ -34,9 +43,10 @@ open class RxViewModel: NSObject {
     public init(storyboardID: String,
                 identifier: String? = nil,
                 bundle: Bundle = .main) {
-        self.storyboardID = storyboardID
-        self.identifier = identifier
-        self.bundle = bundle
+        kind = .init(type: .controller,
+                         storyboardID: storyboardID,
+                         identifier: identifier,
+                         bundle: bundle)
         super.init()
     }
 
@@ -49,9 +59,11 @@ open class RxViewModel: NSObject {
      */
     public init(nibName: String? = nil,
                 bundle: Bundle = .main) {
-        self.storyboardID = ""
-        self.identifier = nibName
-        self.bundle = bundle
+        kind = .init(type: .view,
+                         storyboardID: "",
+                         identifier: nibName,
+                         bundle: bundle)
+        super.init()
     }
 
     deinit {
