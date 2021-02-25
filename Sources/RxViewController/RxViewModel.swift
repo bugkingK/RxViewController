@@ -8,15 +8,6 @@
 import Foundation
 import RxSwift
 
-public protocol ViewBindable {
-    associatedtype Input
-    associatedtype Output
-
-    var input: Input { get }
-
-    func transform() -> Output
-}
-
 struct RxViewModelKind {
     enum ViewType {
         case storyboard, nib
