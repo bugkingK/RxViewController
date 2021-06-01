@@ -8,14 +8,23 @@
 import Foundation
 import RxSwift
 
+public protocol ViewModelProtocol {
+    associatedtype Input
+    associatedtype Output
+
+    var input: Input { get }
+
+    func transform() -> Output
+}
+
+
 struct RxViewModelKind {
     enum ViewType {
-        case storyboard, nib
+        case storyboard(_ storyboardID: String, _ identifier: String?)
+        case nib(_ nibName: String?)
     }
 
     let type: ViewType
-    let storyboardID: String
-    let identifier: String?
     let bundle: Bundle
 }
 
@@ -34,10 +43,7 @@ open class RxViewModel: NSObject {
     public init(storyboardID: String,
                 identifier: String? = nil,
                 bundle: Bundle = .main) {
-        kind = .init(type: .storyboard,
-                     storyboardID: storyboardID,
-                     identifier: identifier,
-                     bundle: bundle)
+        kind = .init(type: .storyboard(storyboardID, identifier), bundle: bundle)
         super.init()
     }
 
@@ -50,10 +56,7 @@ open class RxViewModel: NSObject {
      */
     public init(nibName: String? = nil,
                 bundle: Bundle = .main) {
-        kind = .init(type: .nib,
-                     storyboardID: "",
-                     identifier: nibName,
-                     bundle: bundle)
+        kind = .init(type: .nib(nibName), bundle: bundle)
         super.init()
     }
 
