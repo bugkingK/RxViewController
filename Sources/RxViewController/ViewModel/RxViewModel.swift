@@ -25,7 +25,7 @@ struct RxViewModelKind {
     }
 
     let type: ViewType
-    let bundle: Bundle
+    let bundle: Bundle?
 }
 
 open class RxViewModel: NSObject {
@@ -34,7 +34,7 @@ open class RxViewModel: NSObject {
 
     /// Used to initialize to the Code
     public override init() {
-        self.kind = .init(type: .nib(nil), bundle: .main)
+        self.kind = .init(type: .nib(nil), bundle: nil)
         super.init()
     }
 

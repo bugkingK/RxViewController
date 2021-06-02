@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  RxCellModel.swift
 //  
 //
 //  Created by Bugking on 2021/05/31.
@@ -13,8 +13,8 @@ open class RxCellModel: RxViewModel {
     /// The value of row is added when connecting to tableView.rx.cells.
     public var row: Int?
 
-    public init(cellID: String) {
-        self.cellID = cellID
+    public init(_ cellIdentifier: String) {
+        self.cellID = cellIdentifier
         super.init()
     }
 
