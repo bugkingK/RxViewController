@@ -32,6 +32,12 @@ open class RxViewModel: NSObject {
     public var disposeBag: DisposeBag = .init()
     let kind: RxViewModelKind
 
+    /// Used to initialize to the Code
+    public override init() {
+        self.kind = .init(type: .nib(nil), bundle: .main)
+        super.init()
+    }
+
     /**
      Used to initialize to the storyboard.
 
@@ -54,7 +60,7 @@ open class RxViewModel: NSObject {
         - nibName: Returns a UINib object initialized to the nib file in the specified bundle.
         - bundle: A representation of the code and resources stored in a bundle directory on disk.
      */
-    public init(nibName: String? = nil,
+    public init(nibName: String?,
                 bundle: Bundle = .main) {
         kind = .init(type: .nib(nibName), bundle: bundle)
         super.init()
