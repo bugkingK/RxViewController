@@ -14,7 +14,7 @@ open class RxViewController<ViewModel: RxViewModel>: UIViewController, CycleProt
 
     public required init(viewModel: ViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: viewModel.kind.identifier, bundle: viewModel.kind.bundle)
+        super.init(nibName: nil, bundle: viewModel.kind.bundle)
         initialize()
     }
 

@@ -41,11 +41,11 @@ public protocol CycleProtocol {
 }
 
 public extension CycleProtocol {
-    static func initWith(viewModel: RxViewModel) -> Self {
+    static func `init`(viewModel: RxViewModel) -> Self {
         switch viewModel.kind.type {
-        case .storyboard:
-            let identifier: String = viewModel.kind.identifier ?? .init(describing: self)
-            let storyboard = UIStoryboard(name: viewModel.kind.storyboardID, bundle: viewModel.kind.bundle)
+        case .storyboard(let storyboardID, let identifier):
+            let identifier: String = identifier ?? .init(describing: self)
+            let storyboard = UIStoryboard(name: storyboardID, bundle: viewModel.kind.bundle)
 
             guard var viewController = storyboard.instantiateViewController(withIdentifier: identifier) as? Self else {
                 fatalError("Please check the init value of ViewModel again.")
@@ -56,8 +56,8 @@ public extension CycleProtocol {
             }
 
             return viewController
-        case .nib:
-            let nibName: String = viewModel.kind.identifier ?? .init(describing: self)
+        case .nib(let nibName):
+            let nibName: String = nibName ?? .init(describing: self)
             let nib: UINib = .init(nibName: nibName, bundle: viewModel.kind.bundle)
 
             if let view = nib.instantiate(withOwner: nil, options: nil)[0] as? Self {

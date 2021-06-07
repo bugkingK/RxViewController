@@ -8,20 +8,35 @@
 import Foundation
 import RxSwift
 
+public protocol ViewModelProtocol {
+    associatedtype Input
+    associatedtype Output
+
+    var input: Input { get }
+
+    func transform() -> Output
+}
+
+
 struct RxViewModelKind {
     enum ViewType {
-        case storyboard, nib
+        case storyboard(_ storyboardID: String, _ identifier: String?)
+        case nib(_ nibName: String?)
     }
 
     let type: ViewType
-    let storyboardID: String
-    let identifier: String?
-    let bundle: Bundle
+    let bundle: Bundle?
 }
 
 open class RxViewModel: NSObject {
     public var disposeBag: DisposeBag = .init()
     let kind: RxViewModelKind
+
+    /// Used to initialize to the Code
+    public override init() {
+        self.kind = .init(type: .nib(nil), bundle: nil)
+        super.init()
+    }
 
     /**
      Used to initialize to the storyboard.
@@ -34,10 +49,7 @@ open class RxViewModel: NSObject {
     public init(storyboardID: String,
                 identifier: String? = nil,
                 bundle: Bundle = .main) {
-        kind = .init(type: .storyboard,
-                     storyboardID: storyboardID,
-                     identifier: identifier,
-                     bundle: bundle)
+        kind = .init(type: .storyboard(storyboardID, identifier), bundle: bundle)
         super.init()
     }
 
@@ -48,12 +60,9 @@ open class RxViewModel: NSObject {
         - nibName: Returns a UINib object initialized to the nib file in the specified bundle.
         - bundle: A representation of the code and resources stored in a bundle directory on disk.
      */
-    public init(nibName: String? = nil,
+    public init(nibName: String?,
                 bundle: Bundle = .main) {
-        kind = .init(type: .nib,
-                     storyboardID: "",
-                     identifier: nibName,
-                     bundle: bundle)
+        kind = .init(type: .nib(nibName), bundle: bundle)
         super.init()
     }
 
