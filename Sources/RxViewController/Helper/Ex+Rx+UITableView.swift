@@ -54,9 +54,12 @@ public extension Reactive where Base: UITableView {
             }
 
             model.row = row
-            if let cell = cell as? RxTableViewCell<RxCellModel> {
-                cell.bind(model)
-            }
+            Log.print(d: cell is RxTableViewCell)
+            Log.print(d: cell is RxTableViewCell<RxCellModel>)
+            Log.print(d: cell)
+//            if cell is RxTableViewCell {
+//                cell.bind(model)
+//            }
 
             return cell
         })
