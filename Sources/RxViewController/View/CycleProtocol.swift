@@ -64,8 +64,8 @@ public extension CycleProtocol {
             return viewController
         case .nib(let nibName):
             let nibName: String = nibName ?? .init(describing: self)
-            let bundle: Bundle = viewModel.kind.bundle ?? .main
-            if let viewController = bundle.loadNibNamed(nibName, owner: self, options: nil)?[0] as? Self {
+            let nib = UINib(nibName: nibName, bundle: viewModel.kind.bundle)
+            if let viewController = nib.instantiate(withOwner: self, options: nil).first as? Self {
                 if let viewModel = viewModel as? Self.ViewModel {
                     viewController.bind(viewModel)
                 } else {
