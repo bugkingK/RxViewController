@@ -41,7 +41,7 @@ public protocol CycleProtocol {
 }
 
 public extension CycleProtocol {
-    static func `init`(viewModel: RxViewModel) -> Self {
+    static func instantiate(viewModel: RxViewModel) -> Self {
         switch viewModel.kind.type {
         case .storyboard(let storyboardID, let identifier):
             let identifier: String = identifier ?? .init(describing: self)
