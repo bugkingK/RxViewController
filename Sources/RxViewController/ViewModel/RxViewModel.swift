@@ -21,7 +21,7 @@ public protocol ViewModelProtocol {
 struct RxViewModelKind {
     enum ViewType {
         case storyboard(_ storyboardID: String, _ identifier: String?)
-        case nib(_ nibName: String?)
+//        case nib(_ nibName: String?)
     }
 
     let type: ViewType
@@ -60,11 +60,11 @@ open class RxViewModel: NSObject {
         - nibName: Returns a UINib object initialized to the nib file in the specified bundle.
         - bundle: A representation of the code and resources stored in a bundle directory on disk.
      */
-    public init(nibName: String?,
-                bundle: Bundle = .main) {
-        kind = .init(type: .nib(nibName), bundle: bundle)
-        super.init()
-    }
+//    public init(nibName: String?,
+//                bundle: Bundle = .main) {
+//        kind = .init(type: .nib(nibName), bundle: bundle)
+//        super.init()
+//    }
 
     deinit {
         Log.print(d: "DEINIT \(type(of: self))")

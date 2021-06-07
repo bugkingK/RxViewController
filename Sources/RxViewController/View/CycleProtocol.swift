@@ -62,26 +62,22 @@ public extension CycleProtocol {
             }
 
             return viewController
-        case .nib(let nibName):
-            let nibName: String = nibName ?? .init(describing: self)
-            let bundle: Bundle = viewModel.kind.bundle ?? .main
-            let aClass = NSClassFromString(nibName) as? UIViewController.Type
-            let viewController = aClass?.init(nibName: nibName, bundle: bundle)
-            debugPrint(aClass, viewController)
-
-            if let aClass = NSClassFromString(nibName) as? UIViewController.Type,
-               let viewController = aClass.init(nibName: nibName, bundle: viewModel.kind.bundle) as? Self {
-
-                if let viewModel = viewModel as? Self.ViewModel {
-                    viewController.bind(viewModel)
-                } else {
-                    Log.warning(d: "\(nibName)) Failed to initialize ViewModel.")
-                }
-
-                return viewController
-            } else {
-                fatalError("Please check the init value of ViewModel again.")
-            }
-        }
+//        case .nib(let nibName):
+//            let nibName: String = nibName ?? .init(describing: self)
+//            let bundle: Bundle = viewModel.kind.bundle ?? .main
+//            if let aClass = NSClassFromString(nibName) as? UIViewController.Type,
+//               let viewController = aClass.init(nibName: nibName, bundle: viewModel.kind.bundle) as? Self {
+//
+//                if let viewModel = viewModel as? Self.ViewModel {
+//                    viewController.bind(viewModel)
+//                } else {
+//                    Log.warning(d: "\(nibName)) Failed to initialize ViewModel.")
+//                }
+//
+//                return viewController
+//            } else {
+//                fatalError("Please check the init value of ViewModel again.")
+//            }
+//        }
     }
 }
