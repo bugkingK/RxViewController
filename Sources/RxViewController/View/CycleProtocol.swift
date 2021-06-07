@@ -64,6 +64,10 @@ public extension CycleProtocol {
             return viewController
         case .nib(let nibName):
             let nibName: String = nibName ?? .init(describing: self)
+            let aClass = NSClassFromString(nibName) as? UIViewController.Type
+            let viewController = aClass?.init(nibName: nibName, bundle: viewModel.kind.bundle)
+            debugPrint(aClass, viewController)
+
             if let aClass = NSClassFromString(nibName) as? UIViewController.Type,
                let viewController = aClass.init(nibName: nibName, bundle: viewModel.kind.bundle) as? Self {
 
