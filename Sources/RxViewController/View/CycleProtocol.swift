@@ -65,14 +65,14 @@ public extension CycleProtocol {
         case .nib(let nibName):
             let nibName: String = nibName ?? .init(describing: self)
             let nib = UINib(nibName: nibName, bundle: viewModel.kind.bundle)
-            if let viewController = nib.instantiate(withOwner: nil, options: nil).first as? Self {
-                if let viewModel = viewModel as? Self.ViewModel {
-                    viewController.bind(viewModel)
-                } else {
-                    Log.warning(d: "\(nibName)) Failed to initialize ViewModel.")
-                }
-
-                return viewController
+            if let viewController = nib.instantiate(withOwner: nil, options: nil).first {
+//                if let viewModel = viewModel as? Self.ViewModel {
+//                    viewController.bind(viewModel)
+//                } else {
+//                    Log.warning(d: "\(nibName)) Failed to initialize ViewModel.")
+//                }
+//                return .init()
+                fatalError("Please check the init value of ViewModel again.")
             } else {
                 fatalError("Please check the init value of ViewModel again.")
             }
