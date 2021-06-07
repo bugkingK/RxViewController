@@ -16,4 +16,12 @@ struct Log {
         Swift.debugPrint(NSString(format: "[💡]%@[L:%d]", filename, line), d, separator: " ")
         #endif
     }
+
+    public static func warning(d: Any..., file: String = #file, line: Int = #line) {
+        #if DEBUG
+        var filename: NSString = file as NSString
+        filename = filename.lastPathComponent as NSString
+        Swift.debugPrint(NSString(format: "[⚠️]%@[L:%d]", filename, line), d, separator: " ")
+        #endif
+    }
 }
