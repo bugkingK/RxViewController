@@ -49,12 +49,14 @@ public extension Reactive where Base: UITableView {
         where Source.Element == Sequence {
         return items(source)({ tv, row, element -> UITableViewCell in
             guard let model: RxCellModel = element as? RxCellModel,
-                  let cell = tv.dequeueReusableCell(withIdentifier: model.cellID) as? RxTableViewCell else {
+                  let cell: UITableViewCell = tv.dequeueReusableCell(withIdentifier: model.cellID) else {
                 return .init()
             }
 
             model.row = row
-            cell.bind(model)
+            if let cell = cell as? RxTableViewCell<RxCellModel> {
+                cell.bind(model)
+            }
 
             return cell
         })
