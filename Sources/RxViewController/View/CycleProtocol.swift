@@ -71,8 +71,8 @@ public extension CycleProtocol {
 //                } else {
 //                    Log.warning(d: "\(nibName)) Failed to initialize ViewModel.")
 //                }
-
-                return viewController
+                fatalError("Please check the init value of ViewModel again.")
+//                return viewController
             } else {
                 fatalError("Please check the init value of ViewModel again.")
             }
