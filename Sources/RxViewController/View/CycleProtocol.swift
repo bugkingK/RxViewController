@@ -20,6 +20,7 @@ public protocol CycleProtocol {
 
     /**
      Used when a change to the Cocoa dependency properties that should be injected at 'init()' time is required.
+     ViewModel is not accessible in the current state.
      ⚠️ Caution: Changing properties other than the init point in time may affect the viewDidLoad point in time
      */
     func initialize()
@@ -43,7 +44,7 @@ public protocol CycleProtocol {
 public extension CycleProtocol {
     static func instantiate(viewModel: ViewModel) -> Self {
         guard let viewModel = viewModel as? RxViewModel else {
-            fatalError("Please check the init value of ViewModel again.")
+            fatalError("If an error occurs here, please register it as an issue.")
         }
 
         switch viewModel.kind.type {
@@ -62,20 +63,11 @@ public extension CycleProtocol {
             }
 
             return viewController
-        case .xib(let nibName):
-            let nibName: String = nibName ?? .init(describing: self)
-            let nib: UINib = .init(nibName: nibName, bundle: viewModel.kind.bundle)
-
-            if let view = nib.instantiate(withOwner: nil, options: nil)[0] as? Self {
-                if let viewModel = viewModel as? Self.ViewModel {
-                    view.bind(viewModel)
-                } else {
-                    Log.print(d: "\(nibName)) Failed to initialize ViewModel.")
-                }
-
-                return view
+        case .xib, .code:
+            if let viewModel = viewModel as? Self.ViewModel {
+                return self.init(viewModel: viewModel)
             } else {
-                fatalError("Please check the init value of ViewModel again.")
+                fatalError("If an error occurs here, please register it as an issue.")
             }
         }
     }

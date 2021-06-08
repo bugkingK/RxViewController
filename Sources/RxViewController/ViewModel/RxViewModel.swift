@@ -17,11 +17,11 @@ public protocol ViewModelProtocol {
     func transform() -> Output
 }
 
-
 struct RxViewModelKind {
     enum ViewType {
         case storyboard(_ storyboardID: String, _ identifier: String?)
         case xib(_ nibName: String?)
+        case code
     }
 
     let type: ViewType
@@ -34,7 +34,7 @@ open class RxViewModel: NSObject {
 
     /// Used to initialize to the Code
     public override init() {
-        self.kind = .init(type: .xib(nil), bundle: nil)
+        self.kind = .init(type: .code, bundle: nil)
         super.init()
     }
 
