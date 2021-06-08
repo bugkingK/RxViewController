@@ -14,7 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = .init(frame: UIScreen.main.bounds)
-        let root: StoryboardPageViewController = .instantiate(viewModel: .init(title: "StoryboardPage"))
+//        let root: StoryboardPageViewController = .instantiate(viewModel: .init(title: "StoryboardPage"))
+//        let root: XibViewController = .instantiate(viewModel: .init(title: "title"))
+        let root: CodeViewController = .init(viewModel: .init(title: "Code"))
         let nav: UINavigationController = .init(rootViewController: root)
         window?.rootViewController = nav
         window?.makeKeyAndVisible()

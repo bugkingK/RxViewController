@@ -1,17 +1,15 @@
 //
-//  StoryboardPageViewModel.swift
+//  CodeViewModel.swift
 //  RxViewControllerExample
 //
-//  Created by Bugking on 2021/05/31.
+//  Created by Bugking on 2021/06/08.
 //
 
 import Foundation
 import RxViewController
-import RxSwift
 import RxCocoa
 
-final class StoryboardPageViewModel: RxViewModel, ViewModelProtocol {
-
+final class CodeViewModel: RxViewModel, ViewModelProtocol {
     struct Input {
     }
 
@@ -24,7 +22,7 @@ final class StoryboardPageViewModel: RxViewModel, ViewModelProtocol {
 
     init(title: String) {
         self.title = title
-        super.init(storyboardID: "StoryboardPage")
+        super.init()
     }
 
     func transform() -> Output {
