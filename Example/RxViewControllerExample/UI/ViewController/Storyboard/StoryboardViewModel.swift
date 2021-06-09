@@ -1,5 +1,5 @@
 //
-//  StoryboardPageViewModel.swift
+//  StoryboardViewModel.swift
 //  RxViewControllerExample
 //
 //  Created by Bugking on 2021/05/31.
@@ -10,7 +10,7 @@ import RxViewController
 import RxSwift
 import RxCocoa
 
-final class StoryboardPageViewModel: RxViewModel, ViewModelProtocol {
+final class StoryboardViewModel: RxViewModel, ViewModelProtocol {
 
     struct Input {
     }
