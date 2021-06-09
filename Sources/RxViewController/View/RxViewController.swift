@@ -1,6 +1,6 @@
 //
 //  RxViewController.swift
-//  
+//
 //
 //  Created by Kimun Kwon on 2021/02/20.
 //
@@ -12,10 +12,30 @@ open class RxViewController<ViewModel: RxViewModel>: UIViewController, CycleProt
     public var disposeBag: DisposeBag = .init()
     public var viewModel: ViewModel!
 
-    public required init(viewModel: ViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: viewModel.kind.bundle)
-        initialize()
+    public convenience required init(viewModel: ViewModel) {
+        switch viewModel.kind.type {
+        case .xib(let nibName):
+            self.init(nibName: nibName, bundle: viewModel.kind.bundle)
+            self.viewModel = viewModel
+            let nibName: String = nibName ?? .init(describing: self)
+
+            if let view = viewModel.kind.bundle?.loadNibNamed(nibName, owner: self, options: nil)?.first as? UIView {
+                self.view = view
+                self.viewDidLoad()
+            } else {
+                Log.print(d: "\(nibName)) Failed to initialize UIView")
+            }
+        case .code:
+            self.init()
+            self.viewModel = viewModel
+        default:
+            fatalError("If an error occurs here, please register it as an issue.")
+        }
+    }
+
+    public override required init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.initialize()
     }
 
     public required init?(coder: NSCoder) {

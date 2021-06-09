@@ -1,6 +1,6 @@
 //
 //  RxViewModel.swift
-//  
+//
 //
 //  Created by Kimun Kwon on 2021/02/20.
 //
@@ -17,11 +17,11 @@ public protocol ViewModelProtocol {
     func transform() -> Output
 }
 
-
 struct RxViewModelKind {
     enum ViewType {
         case storyboard(_ storyboardID: String, _ identifier: String?)
-        case nib(_ nibName: String?)
+        case xib(_ nibName: String?)
+        case code
     }
 
     let type: ViewType
@@ -34,7 +34,7 @@ open class RxViewModel: NSObject {
 
     /// Used to initialize to the Code
     public override init() {
-        self.kind = .init(type: .nib(nil), bundle: nil)
+        self.kind = .init(type: .code, bundle: nil)
         super.init()
     }
 
@@ -62,7 +62,7 @@ open class RxViewModel: NSObject {
      */
     public init(nibName: String?,
                 bundle: Bundle = .main) {
-        kind = .init(type: .nib(nibName), bundle: bundle)
+        kind = .init(type: .xib(nibName), bundle: bundle)
         super.init()
     }
 

@@ -1,8 +1,8 @@
 //
-//  Ex+ObservableType.swift
-//  
+//  Rx+UITableView.swift
+//  RxViewControllerExample
 //
-//  Created by Bugking on 2021/06/03.
+//  Created by Bugking on 2021/05/31.
 //
 
 import Foundation
@@ -23,4 +23,3 @@ extension ObservableType {
         }
     }
 }
-
