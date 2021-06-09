@@ -14,7 +14,17 @@ open class RxTabBarController<ViewModel: RxViewModel>: UITabBarController, Cycle
 
     public required init(viewModel: ViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: nil, bundle: viewModel.kind.bundle)
+        switch viewModel.kind.type {
+        case .xib(let nibName):
+            // not support
+            super.init(nibName: nibName, bundle: viewModel.kind.bundle)
+        default:
+            super.init(nibName: nil, bundle: viewModel.kind.bundle)
+        }
+    }
+
+    public override required init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         initialize()
     }
 
