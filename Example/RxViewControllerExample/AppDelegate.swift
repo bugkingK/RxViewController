@@ -17,8 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let root: StoryboardPageViewController = .instantiate(viewModel: .init(title: "StoryboardPage"))
 //        let root: XibViewController = .instantiate(viewModel: .init(title: "title"))
         let root: CodeViewController = .init(viewModel: .init(title: "Code"))
-        let nav: UINavigationController = .init(rootViewController: root)
-        window?.rootViewController = nav
+//        let nav: UINavigationController = .init(rootViewController: root)
+//        window?.rootViewController = nav
+        let tab: CodeTabBarController = .init(viewModel: .init(title: "Tabbar"))
+//        let tab: StoryboardTabBarController = .instantiate(viewModel: .init(title: "Storyboard"))
+
+        tab.viewControllers = [root]
+        window?.rootViewController = tab
         window?.makeKeyAndVisible()
         return true
     }

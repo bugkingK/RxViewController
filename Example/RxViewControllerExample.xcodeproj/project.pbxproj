@@ -13,6 +13,11 @@
 		0D29245A266F5218004E4317 /* CodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D292459266F5218004E4317 /* CodeViewController.swift */; };
 		0D29245C266F5220004E4317 /* CodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D29245B266F5220004E4317 /* CodeViewModel.swift */; };
 		0D3428B9266F13AB000BB124 /* RxViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 0D3428B8266F13AB000BB124 /* RxViewController */; };
+		0D85AFC426704C3600EAA7D5 /* CodeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85AFC326704C3600EAA7D5 /* CodeTabBarController.swift */; };
+		0D85AFC626704F0000EAA7D5 /* CodeTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85AFC526704F0000EAA7D5 /* CodeTabBarViewModel.swift */; };
+		0D85AFCE267057FB00EAA7D5 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D85AFCD267057FB00EAA7D5 /* TabBar.storyboard */; };
+		0D85AFD02670580C00EAA7D5 /* StoryboardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85AFCF2670580C00EAA7D5 /* StoryboardTabBarController.swift */; };
+		0D85AFD22670594600EAA7D5 /* StoryboardTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85AFD12670594600EAA7D5 /* StoryboardTabBarViewModel.swift */; };
 		0DF61F462664AFA300EA625B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF61F452664AFA300EA625B /* AppDelegate.swift */; };
 		0DF61F4A2664AFA300EA625B /* StoryboardPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF61F492664AFA300EA625B /* StoryboardPageViewController.swift */; };
 		0DF61F4D2664AFA300EA625B /* StoryboardPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DF61F4B2664AFA300EA625B /* StoryboardPage.storyboard */; };
@@ -30,6 +35,11 @@
 		0D292456266F4F9C004E4317 /* XibViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XibViewModel.swift; sourceTree = "<group>"; };
 		0D292459266F5218004E4317 /* CodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewController.swift; sourceTree = "<group>"; };
 		0D29245B266F5220004E4317 /* CodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewModel.swift; sourceTree = "<group>"; };
+		0D85AFC326704C3600EAA7D5 /* CodeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTabBarController.swift; sourceTree = "<group>"; };
+		0D85AFC526704F0000EAA7D5 /* CodeTabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTabBarViewModel.swift; sourceTree = "<group>"; };
+		0D85AFCD267057FB00EAA7D5 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
+		0D85AFCF2670580C00EAA7D5 /* StoryboardTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardTabBarController.swift; sourceTree = "<group>"; };
+		0D85AFD12670594600EAA7D5 /* StoryboardTabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardTabBarViewModel.swift; sourceTree = "<group>"; };
 		0DF61F422664AFA300EA625B /* RxViewControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxViewControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DF61F452664AFA300EA625B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0DF61F492664AFA300EA625B /* StoryboardPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardPageViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +98,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		0D85AFC126704C0D00EAA7D5 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				0D85AFCC267057EC00EAA7D5 /* Storyboard */,
+				0D85AFC226704C1F00EAA7D5 /* Code */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		0D85AFC226704C1F00EAA7D5 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				0D85AFC326704C3600EAA7D5 /* CodeTabBarController.swift */,
+				0D85AFC526704F0000EAA7D5 /* CodeTabBarViewModel.swift */,
+			);
+			path = Code;
+			sourceTree = "<group>";
+		};
+		0D85AFCC267057EC00EAA7D5 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				0D85AFCD267057FB00EAA7D5 /* TabBar.storyboard */,
+				0D85AFCF2670580C00EAA7D5 /* StoryboardTabBarController.swift */,
+				0D85AFD12670594600EAA7D5 /* StoryboardTabBarViewModel.swift */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
 		0DF61F392664AFA300EA625B = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +158,7 @@
 		0DF61F5F2664B0FE00EA625B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0D85AFC126704C0D00EAA7D5 /* TabBar */,
 				0DF61F612664B12000EA625B /* Home */,
 			);
 			path = UI;
@@ -254,6 +293,7 @@
 				0D292453266F3751004E4317 /* XibViewController.xib in Resources */,
 				0DF61F522664AFA400EA625B /* LaunchScreen.storyboard in Resources */,
 				0DF61F4F2664AFA400EA625B /* Assets.xcassets in Resources */,
+				0D85AFCE267057FB00EAA7D5 /* TabBar.storyboard in Resources */,
 				0DF61F4D2664AFA300EA625B /* StoryboardPage.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,12 +305,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D85AFD02670580C00EAA7D5 /* StoryboardTabBarController.swift in Sources */,
 				0D292457266F4F9C004E4317 /* XibViewModel.swift in Sources */,
+				0D85AFC426704C3600EAA7D5 /* CodeTabBarController.swift in Sources */,
 				0D29245A266F5218004E4317 /* CodeViewController.swift in Sources */,
 				0D292451266F3749004E4317 /* XibViewController.swift in Sources */,
 				0DF61F4A2664AFA300EA625B /* StoryboardPageViewController.swift in Sources */,
 				0DF61F702664B6D800EA625B /* Rx+UITableView.swift in Sources */,
+				0D85AFD22670594600EAA7D5 /* StoryboardTabBarViewModel.swift in Sources */,
 				0D29245C266F5220004E4317 /* CodeViewModel.swift in Sources */,
+				0D85AFC626704F0000EAA7D5 /* CodeTabBarViewModel.swift in Sources */,
 				0DF61F462664AFA300EA625B /* AppDelegate.swift in Sources */,
 				0DF61F672664B1F100EA625B /* StoryboardPageViewModel.swift in Sources */,
 			);
