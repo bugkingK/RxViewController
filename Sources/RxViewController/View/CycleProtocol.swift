@@ -5,7 +5,12 @@
 //  Created by Kimun Kwon on 2021/02/20.
 //
 
-import UIKit
+#if os(iOS) || os(tvOS)
+    import UIKit
+#elseif os(macOS)
+    import AppKit
+#endif
+
 import RxSwift
 
 public protocol CycleProtocol {
@@ -50,12 +55,23 @@ public extension CycleProtocol {
         switch viewModel.kind.type {
         case .storyboard(let storyboardID, let identifier):
             let identifier: String = identifier ?? .init(describing: self)
+            var viewController: Self
+            
+            #if os(iOS) || os(tvOS)
             let storyboard = UIStoryboard(name: storyboardID, bundle: viewModel.kind.bundle)
-
-            guard var viewController = storyboard.instantiateViewController(withIdentifier: identifier) as? Self else {
+            guard let vc = storyboard.instantiateViewController(withIdentifier: identifier) as? Self else {
                 fatalError("Please check the init value of ViewModel again.")
             }
-
+            viewController = vc
+            
+            #elseif os(macOS)
+            let storyboard = NSStoryboard(name: storyboardID, bundle: viewModel.kind.bundle)
+            guard let vc = storyboard.instantiateController(withIdentifier: identifier) as? Self else {
+                fatalError("Please check the init value of ViewModel again.")
+            }
+            viewController = vc
+            #endif
+            
             if let viewModel = viewModel as? Self.ViewModel {
                 viewController.viewModel = viewModel
             } else {

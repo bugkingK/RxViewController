@@ -5,6 +5,7 @@
 //  Created by Kimun Kwon on 2021/02/20.
 //
 
+#if os(iOS) || os(tvOS)
 import UIKit
 import RxSwift
 
@@ -49,3 +50,5 @@ open class RxTabBarController<ViewModel: RxViewModel>: UITabBarController, Cycle
 
     open func bind(_ viewModel: ViewModel) {}
 }
+
+#endif
