@@ -11,7 +11,12 @@ import RxSwift
 
 open class RxWindowController<ViewModel: RxViewModel>: NSWindowController, CycleProtocol {
     public var disposeBag: DisposeBag = .init()
-    public var viewModel: ViewModel!
+    public var viewModel: ViewModel! {
+        didSet {
+            disposeBag = .init()
+            bind(viewModel)
+        }
+    }
 
     public convenience required init(viewModel: ViewModel) {
         switch viewModel.kind.type {
@@ -40,7 +45,6 @@ open class RxWindowController<ViewModel: RxViewModel>: NSWindowController, Cycle
     open override func windowDidLoad() {
         super.windowDidLoad()
         layout()
-        bind(viewModel)
     }
 
     deinit {
