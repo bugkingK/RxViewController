@@ -37,8 +37,8 @@ open class RxWindowController<ViewModel: RxViewModel>: NSWindowController, Cycle
         initialize()
     }
     
-    open override func loadWindow() {
-        super.loadWindow()
+    open override func windowDidLoad() {
+        super.windowDidLoad()
         layout()
         bind(viewModel)
     }
