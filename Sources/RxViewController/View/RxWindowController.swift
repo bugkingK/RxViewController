@@ -9,7 +9,7 @@
 import AppKit
 import RxSwift
 
-class RxWindowController<ViewModel: RxViewModel>: NSWindowController, CycleProtocol {
+open class RxWindowController<ViewModel: RxViewModel>: NSWindowController, CycleProtocol {
     public var disposeBag: DisposeBag = .init()
     public var viewModel: ViewModel!
 
@@ -37,7 +37,7 @@ class RxWindowController<ViewModel: RxViewModel>: NSWindowController, CycleProto
         initialize()
     }
     
-    override func loadWindow() {
+    open override func loadWindow() {
         super.loadWindow()
         layout()
         bind(viewModel)
